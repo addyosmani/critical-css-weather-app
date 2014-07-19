@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang='en' ng-app="owmApp">
+<head>
+<!-- build:css ./_assets/combined.css -->
+<link rel="stylesheet" type="text/css" href="./bower_components/gumby/css/gumby.css" />
+<link rel="stylesheet" type="text/css" href="./bower_components/font-awesome/css/font-awesome.css" />
+<link rel="stylesheet" type="text/css" href="./owm-app.css" />
+<!-- endbuild -->
+<meta charset='UTF-8' />
+<title>Open Weather Map Application</title>
+</head>
+
+<body class="owm-body">
+  <div class="navbar owm-navigation">
+    <ul>
+      <li><a href="#!/">US Cities</a></li>
+      <li><a href="#!/near-me">Near Me</a></li>
+    </ul>
+  </div>
+
+  <div class="navbar owm-history" ng-controller="HistoryCtrl">
+    <div ng-repeat="listing in listings" class="owm-history-listing">
+      <span ng-if="listing.isHome">
+        <a ng-href="#/">Home</a>
+      </span>
+      <span ng-if="listing.isNearMe">
+        <a ng-href="#/near-me">Near Me</a>
+      </span>
+      <span ng-if="!listing.isHome && !listing.isNearMe">
+        <a ng-href="#!/cities/{{ listing.name }}">{{ listing.name }}</a>
+      </span>
+    </div>
+  </div>
+
+  <div class="owm-view fade" ng-view></div>
+  
+<!-- build:js ./_assets/combined.js -->
+<script type="text/javascript" src="./bower_components/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="./bower_components/underscore/underscore.js"></script>
+<script type="text/javascript" src="./bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="./bower_components/angular-route/angular-route.js"></script>
+<script type="text/javascript" src="./bower_components/angular-animate/angular-animate.js"></script>
+<script type="text/javascript" src="./bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
+<script type="text/javascript" src="./owm-library.js"></script>
+<script type="text/javascript" src="./owm-history.js"></script>
+<script type="text/javascript" src="./owm-app-views.js"></script>
+<script type="text/javascript" src="./home/home.js"></script>
+<script type="text/javascript" src="./home/near-me.js"></script>
+<script type="text/javascript" src="./cities/city.js"></script>
+<script type="text/javascript" src="./owm-app.js"></script>
+<!-- endbuild -->
+</body>
+</html>

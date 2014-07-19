@@ -1,0 +1,99 @@
+/* C00014 */
+.row, .container {
+  width:auto!important;
+  min-width:auto!important;
+  max-width:100%!important;
+}
+
+.owm-body {
+  height:100%;
+  position:relative;
+}
+.owm-navigation {
+  z-index:100;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  margin-bottom:0;
+}
+.owm-history {
+  position:absolute;
+  top:60px;
+  background:#666;
+  left:0;
+  right:0;
+  min-height:40px;
+  z-index:99;
+  margin-bottom:0;
+}
+.owm-history,
+.owm-history a {
+  color:white;
+}
+.owm-history-listing {
+  display:inline-block;
+  padding:10px;
+}
+.owm-history-listing + .owm-history-listing:before {
+  content:">>";
+}
+.owm-view {
+  position:relative;
+  min-height:100%;
+  padding:150px 20px 20px;
+}
+.omw-detail-panel {
+  border-left:1px solid #ddd;
+  padding-left:20px;
+  background:#eee;
+  position:absolute;
+  top:100px;
+  padding-top:20px;
+  right:0;
+  left:50%;
+  bottom:0;
+  overflow:auto;
+}
+.owm-weather-entries {
+  margin-bottom:20px;
+  border-top:2px solid #ddd;
+  margin-top:20px;
+  padding:10px 0;
+  position:relative;
+}
+.owm-weather-entries:after {
+  content:"";
+  position:absolute;
+  top:-20px;
+  left:20px;
+  border-width:10px;
+  border-style:solid;
+  border-color:transparent transparent #ddd;
+}
+.owm-weather-item-listing {
+  overflow:auto;
+  padding:8px 0;
+}
+.owm-stop-route-listing + .owm-stop-route-listing {
+  border-top:1px solid #ddd;
+}
+.owm-weather-item-listing time {
+  font-size:30px;
+  margin-right:20px;
+  font-weight:bold;
+}
+
+@media (max-width: 600px) {
+  .tcc-detail-panel {
+    margin-top:20px;
+    position:static;
+  }
+}
+.owm-searcher {
+  width:100%;
+  box-sizing:border-box;
+  font-size:20px;
+  padding:10px;
+  border:2px solid #999;
+}

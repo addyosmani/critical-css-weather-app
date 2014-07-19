@@ -1,0 +1,19 @@
+<h1>{{ city.name }}</h1>
+<p>
+  Country = <strong>{{ city.country }}</strong>,
+  Latitude = <strong>{{ city.coord.lat }}</strong>,
+  Longitude = <strong>{{ city.coord.lon }}</strong>
+</p>
+
+<div class="omw-detail-panel">
+  <div ng-repeat="item in forecast" class="owm-weather-item-listing">
+    <time class="fa fa-cloud">
+      {{ item.dt_txt | date:'MMMM d (h:mm a)' }}
+    </time>
+    <div class="owm-weather-entries">
+      <div ng-repeat="entry in item.weather">
+        {{ entry.main }} ({{ entry.description }})
+      </div>
+    </div>
+  </div>
+</div>
