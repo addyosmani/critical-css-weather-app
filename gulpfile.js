@@ -48,8 +48,8 @@ gulp.task('critical', ['build', 'copystyles'], function () {
         src: 'index.html',
         styleTarget: '_assets/combined.css',
         htmlTarget: 'index.html',
-        width: 320,
-        height: 480,
+        width: 960,
+        height: 600,
         minify: true
     });
 });
