@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang='en' ng-app="owmApp">
 <head>
-<!-- build:css ./_assets/combined.css -->
+<!-- build:css ./assets/combined.css -->
 <link rel="stylesheet" type="text/css" href="./bower_components/gumby/css/gumby.css" />
 <link rel="stylesheet" type="text/css" href="./bower_components/font-awesome/css/font-awesome.css" />
 <link rel="stylesheet" type="text/css" href="./owm-app.css" />
@@ -35,7 +35,7 @@
 
   <div class="owm-view fade" ng-view></div>
 
-<!-- build:js ./_assets/combined.js -->
+<!-- build:js ./assets/combined.js -->
 <script type="text/javascript" src="./bower_components/jquery/dist/jquery.js"></script>
 <script type="text/javascript" src="./bower_components/underscore/underscore.js"></script>
 <script type="text/javascript" src="./bower_components/angular/angular.js"></script>
@@ -54,7 +54,7 @@
 <script>
 function loadCSS(e,t,n){"use strict";var i=window.document.createElement("link");var o=t||window.document.getElementsByTagName("script")[0];i.rel="stylesheet";i.href=e;i.media="only x";o.parentNode.insertBefore(i,o);setTimeout(function(){i.media=n||"all"})}
 
-loadCSS('_assets/site.css');
+loadCSS('assets/site.css');
 </script>
 </body>
 </html>

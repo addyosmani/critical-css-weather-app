@@ -37,18 +37,18 @@ gulp.task('connect', function() {
 
 // Critical-path CSS
 gulp.task('copystyles', function () {
-    return gulp.src(['build/_assets/combined.css'])
+    return gulp.src(['build/assets/combined.css'])
         .pipe(rename({
             basename: "site" // site.css
         }))
-        .pipe(gulp.dest('build/_assets/'));
+        .pipe(gulp.dest('build/assets/'));
 });
 
 gulp.task('critical', ['build', 'copystyles'], function () {
     critical.generateInline({
         base: 'build/',
         src: 'index.html',
-        styleTarget: '_assets/combined.css',
+        styleTarget: 'assets/combined.css',
         htmlTarget: 'index.html',
         width: 960,
         height: 600,
