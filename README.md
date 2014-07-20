@@ -5,6 +5,8 @@
 The application makes use of the Open Weather API. It's forked from this [original](https://github.com/Thinkful/angular-weather-app)
 implementation with additions to add critical-path CSS optimisation, ng-annotations and other minor fixes.
 
+Live demos of both a [normal](http://addyosmani.github.io/critical-css-weather-app/output/normal/) build and [critical-css optimized](http://addyosmani.github.io/critical-css-weather-app/output/critical) build are both available.
+
 ## Installation
 
 * `cd` into the project directory and run `npm install`
