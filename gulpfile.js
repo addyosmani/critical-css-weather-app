@@ -16,17 +16,17 @@ var runSequence = require('run-sequence');
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 gulp.task('copy-html-files', function () {
-  gulp.src(['./app/**/*.html', './app/owm-cities.json', '!./app/index.html'], {base: './app'})
+  return gulp.src(['./app/**/*.html', './app/owm-cities.json', '!./app/index.html'], {base: './app'})
     .pipe(gulp.dest('build/'));
 });
 
 gulp.task('copy-font-files', function () {
-  gulp.src(['./app/bower_components/font-awesome/fonts/*.*'])
+  return gulp.src(['./app/bower_components/font-awesome/fonts/*.*'])
     .pipe(gulp.dest('build/fonts/'));
 });
 
 gulp.task('usemin', function () {
-  gulp.src('./app/index.html')
+  return gulp.src('./app/index.html')
     .pipe(usemin({
       css: [minifyCss(), 'concat'],
       js: [ngAnnotate(), uglify()]
@@ -68,10 +68,12 @@ gulp.task('criticalcss', function (cb) {
     }, cb.bind(cb));
 });
 
-
-gulp.task('critical', ['clean', 'build'], function () {
-  setTimeout(function(){
-    gulp.start('criticalcss', 'copystyles');
-  }, 5000);
+gulp.task('critical', ['clean'], function () {
+  runSequence('build', 'copystyles', function(){
+    // Note this is a temporary hack. 
+    setTimeout(function(){
+      gulp.start('criticalcss');
+    }, 5000);
+  });
 });
 // end critical-path css
