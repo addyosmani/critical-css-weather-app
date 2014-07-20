@@ -7,6 +7,14 @@ implementation with additions to add critical-path CSS optimisation, ng-annotati
 
 Live demos of both a [normal](http://addyosmani.github.io/critical-css-weather-app/output/normal/) build and [critical-css optimized](http://addyosmani.github.io/critical-css-weather-app/output/critical) build are both available.
 
+Before:
+
+![](http://i.imgur.com/MFYmvOO.png)
+
+After:
+
+![](http://i.imgur.com/mOsDBf3.png)
+
 ## Installation
 
 * `cd` into the project directory and run `npm install`
