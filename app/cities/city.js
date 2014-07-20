@@ -18,7 +18,8 @@ viewsModule.controller('CityCtrl', ['$scope', 'cityDetails', 'owmHistory',
     $scope.city.country = 'Canada';
   }
   $scope.forecast = _.map(cityDetails.list, function(item) {
-    item.dt_txt = Date.parse(item.dt_txt);
+    var a = item.dt_txt.split(/[^0-9]/);
+    item.dt_txt = new Date (a[0],a[1]-1,a[2],a[3],a[4],a[5] );
     return item;
   });
 }])
