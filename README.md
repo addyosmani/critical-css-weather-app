@@ -13,7 +13,7 @@ Before:
 
 After:
 
-![](http://i.imgur.com/mOsDBf3.png)
+![](http://i.imgur.com/oWHFPhb.png)
 
 ## Installation
 
