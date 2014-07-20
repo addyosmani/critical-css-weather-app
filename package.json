@@ -16,6 +16,7 @@
     "gulp-rev": "^0.4.2",
     "gulp-sass": "^0.7.1",
     "gulp-uglify": "^0.3.0",
-    "gulp-usemin": "^0.3.3"
+    "gulp-usemin": "^0.3.3",
+    "gulp-ng-annotate": "^0.2.0"
   }
 }

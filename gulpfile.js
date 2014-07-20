@@ -8,6 +8,7 @@ var usemin = require('gulp-usemin');
 var clean = require('gulp-clean');
 var critical = require('critical'); // new
 var rename = require('gulp-rename'); // new
+var ngAnnotate = require('gulp-ng-annotate'); // new
 
 gulp.task('copy-html-files', function() {
   gulp.src(['./app/**/*.html', './app/owm-cities.json', '!./app/index.html'], {base: './app'})
@@ -23,6 +24,7 @@ gulp.task('usemin', function() {
   gulp.src('./app/index.html')
     .pipe(usemin({
       css: [minifyCss(), 'concat'],
+      js: [ngAnnotate(), uglify()]
     }))
     .pipe(gulp.dest('build/'));
 });
