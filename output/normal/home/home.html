@@ -1,0 +1,14 @@
+<!-- filter each search result -->
+<input type="text" class="owm-searcher" placeholder="Filter US Cities" ng-model="search" />
+
+<div class="container row">
+
+  <div class="six columns">
+    <div ng-repeat="city in cities | filter:search" fade="fade">
+      <h2>
+        <a ng-href="#!/cities/{{ city }}">{{ city }}</a>
+      </h2>
+    </div>
+  </div>
+
+</div>

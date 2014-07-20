@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang='en' ng-app="owmApp">
+<head>
+<link rel="stylesheet" href="./_assets/combined.css"/>
+<meta charset='UTF-8' />
+<title>Open Weather Map Application</title>
+</head>
+
+<body class="owm-body">
+  <div class="navbar owm-navigation">
+    <ul>
+      <li><a href="#!/">US Cities</a></li>
+      <li><a href="#!/near-me">Near Me</a></li>
+    </ul>
+  </div>
+
+  <div class="navbar owm-history" ng-controller="HistoryCtrl">
+    <div ng-repeat="listing in listings" class="owm-history-listing">
+      <span ng-if="listing.isHome">
+        <a ng-href="#/">Home</a>
+      </span>
+      <span ng-if="listing.isNearMe">
+        <a ng-href="#/near-me">Near Me</a>
+      </span>
+      <span ng-if="!listing.isHome && !listing.isNearMe">
+        <a ng-href="#!/cities/{{ listing.name }}">{{ listing.name }}</a>
+      </span>
+    </div>
+  </div>
+
+  <div class="owm-view fade" ng-view></div>
+
+<script src="./_assets/combined.js"></script>
+
+<script>
+function loadCSS(e,t,n){"use strict";var i=window.document.createElement("link");var o=t||window.document.getElementsByTagName("script")[0];i.rel="stylesheet";i.href=e;i.media="only x";o.parentNode.insertBefore(i,o);setTimeout(function(){i.media=n||"all"})}
+
+loadCSS('_assets/combined.css');
+</script>
+</body>
+</html>
