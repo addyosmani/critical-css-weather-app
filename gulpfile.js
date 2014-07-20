@@ -9,18 +9,23 @@ var clean = require('gulp-clean');
 var critical = require('critical'); // new
 var rename = require('gulp-rename'); // new
 var ngAnnotate = require('gulp-ng-annotate'); // new
+var clean = require('gulp-clean'); // new
+var del = require('del'); // new
+var runSequence = require('run-sequence');
 
-gulp.task('copy-html-files', function() {
+gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
+
+gulp.task('copy-html-files', function () {
   gulp.src(['./app/**/*.html', './app/owm-cities.json', '!./app/index.html'], {base: './app'})
     .pipe(gulp.dest('build/'));
 });
 
-gulp.task('copy-font-files', function() {
+gulp.task('copy-font-files', function () {
   gulp.src(['./app/bower_components/font-awesome/fonts/*.*'])
     .pipe(gulp.dest('build/fonts/'));
 });
 
-gulp.task('usemin', function() {
+gulp.task('usemin', function () {
   gulp.src('./app/index.html')
     .pipe(usemin({
       css: [minifyCss(), 'concat'],
@@ -29,34 +34,44 @@ gulp.task('usemin', function() {
     .pipe(gulp.dest('build/'));
 });
 
-gulp.task('connect', function() {
+gulp.task('connect', function () {
   connect.server({
     root: 'app/'
   });
 });
 
+// Default Task
+gulp.task('default', ['connect']);
+
+gulp.task('build', ['clean'], function () {
+  runSequence('copy-html-files', 'copy-font-files', 'usemin');
+});
+
 // Critical-path CSS
 gulp.task('copystyles', function () {
-    return gulp.src(['build/assets/combined.css'])
+    return gulp.src('./build/assets/combined.css')
         .pipe(rename({
             basename: "site" // site.css
         }))
-        .pipe(gulp.dest('build/assets/'));
+        .pipe(gulp.dest('./build/assets/'));
 });
 
-gulp.task('critical', ['build', 'copystyles'], function () {
+gulp.task('criticalcss', function (cb) {
     critical.generateInline({
-        base: 'build/',
+        base: './build/',
         src: 'index.html',
-        styleTarget: 'assets/combined.css',
+        styleTarget: './assets/combined.css',
         htmlTarget: 'index.html',
         width: 960,
         height: 600,
         minify: true
-    });
+    }, cb.bind(cb));
+});
+
+
+gulp.task('critical', ['clean', 'build'], function () {
+  setTimeout(function(){
+    gulp.start('criticalcss', 'copystyles');
+  }, 5000);
 });
 // end critical-path css
-
-// Default Task
-gulp.task('default', ['connect']);
-gulp.task('build', ['copy-html-files', 'copy-font-files', 'usemin']);
