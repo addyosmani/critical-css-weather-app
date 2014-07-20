@@ -9,7 +9,7 @@ Live demos of both a [normal](http://addyosmani.github.io/critical-css-weather-a
 
 Before:
 
-![](http://i.imgur.com/MFYmvOO.png)
+![](http://i.imgur.com/WCX8ke2.png)
 
 After:
 
