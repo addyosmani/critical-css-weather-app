@@ -1,23 +1,28 @@
 // Include gulp
-var gulp = require('gulp'); 
+var gulp = require('gulp');
 var connect = require('gulp-connect');
 var uglify = require('gulp-uglify');
 var minifyHtml = require('gulp-minify-html');
 var minifyCss = require('gulp-minify-css');
 var usemin = require('gulp-usemin');
-var rev = require('gulp-rev');
 var clean = require('gulp-clean');
+var critical = require('critical'); // new
+var rename = require('gulp-rename'); // new
 
 gulp.task('copy-html-files', function() {
   gulp.src(['./app/**/*.html', './app/owm-cities.json', '!./app/index.html'], {base: './app'})
     .pipe(gulp.dest('build/'));
 });
 
+gulp.task('copy-font-files', function() {
+  gulp.src(['./app/bower_components/font-awesome/fonts/*.*'])
+    .pipe(gulp.dest('build/fonts/'));
+});
+
 gulp.task('usemin', function() {
   gulp.src('./app/index.html')
     .pipe(usemin({
-      css: [minifyCss(), 'concat', rev()],
-      js: [uglify(), rev()]
+      css: [minifyCss(), 'concat'],
     }))
     .pipe(gulp.dest('build/'));
 });
@@ -28,6 +33,28 @@ gulp.task('connect', function() {
   });
 });
 
+// Critical-path CSS
+gulp.task('copystyles', function () {
+    return gulp.src(['build/_assets/combined.css'])
+        .pipe(rename({
+            basename: "site" // site.css
+        }))
+        .pipe(gulp.dest('build/_assets/'));
+});
+
+gulp.task('critical', ['build', 'copystyles'], function () {
+    critical.generateInline({
+        base: 'build/',
+        src: 'index.html',
+        styleTarget: '_assets/combined.css',
+        htmlTarget: 'index.html',
+        width: 320,
+        height: 480,
+        minify: true
+    });
+});
+// end critical-path css
+
 // Default Task
 gulp.task('default', ['connect']);
-gulp.task('build', ['copy-html-files', 'usemin']);
+gulp.task('build', ['copy-html-files', 'copy-font-files', 'usemin']);
