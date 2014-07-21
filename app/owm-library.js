@@ -9,24 +9,20 @@ angular.module('owmLibrary', [])
   .factory('owmUSCities', ['$http', '$q', 'OWM_CITIES_JSON_FILE',
                    function($http,   $q,   OWM_CITIES_JSON_FILE) {
     return function() {
-      var defer = $q.defer();
-      $http.get(OWM_CITIES_JSON_FILE, { cache : true })
+      return $http.get(OWM_CITIES_JSON_FILE, { cache : true })
         .success(function(cities) {
           defer.resolve(cities);
         });
-      return defer.promise;
     }
   }])
 
   .factory('owmRequest', ['$http', '$q', 'OWM_API_PREFIX',
                   function($http,   $q,   OWM_API_PREFIX) {
     return function(path) {
-      var defer = $q.defer();
-      $http.get(OWM_API_PREFIX + path)
+      return $http.get(OWM_API_PREFIX + path)
         .success(function(data) {
           defer.resolve(data);
-        })
-      return defer.promise;
+        });
     }
   }])
 
