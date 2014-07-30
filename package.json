@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/addyosmani/critical-css-weather-app"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "devDependencies": {
     "critical": "^0.1.5",
     "del": "^0.1.1",
