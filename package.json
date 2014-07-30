@@ -6,7 +6,7 @@
   },
   "version": "0.0.2",
   "devDependencies": {
-    "critical": "^0.1.5",
+    "critical": "^0.1.6",
     "del": "^0.1.1",
     "gulp": "^3.6.2",
     "gulp-clean": "^0.3.1",
